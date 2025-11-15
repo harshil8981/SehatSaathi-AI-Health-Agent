@@ -20,8 +20,8 @@ def init_memory_db():
 
 def init_clinics():
     clinics = [
-        {"name":"Community Clinic A","lat":28.6139,"lon":77.2090,"distance_km":1.2,"phone":"+91-90000-00001"},
-        {"name":"Telemedicine Portal","lat":null,"lon":null,"distance_km":null,"url":"https://telemed.example"}
+        {"name": "Community Clinic A", "lat": 28.6139, "lon": 77.2090, "distance_km": 1.2, "phone": "+91-90000-00001"},
+        {"name": "Telemedicine Portal", "lat": None, "lon": None, "distance_km": None, "url": "https://telemed.example"}
     ]
     with open(CLINICS_PATH, 'w', encoding='utf-8') as f:
         json.dump(clinics, f, indent=2)
