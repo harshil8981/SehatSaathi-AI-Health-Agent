@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>SehatSaathi — Live Client</title>
+  <style>
+    body{font-family:Arial;margin:20px;}
+    #chat{border:1px solid #ddd;padding:10px;height:400px;overflow:auto;}
+    .user{color:#0b63d6;margin:6px 0;}
+    .bot{color:#222;margin:6px 0;}
+    textarea{width:100%;height:60px;}
+  </style>
+</head>
+<body>
+  <h2>SehatSaathi — Local Live Client</h2>
+  <div id="chat"></div>
+  <textarea id="message" placeholder="Type your symptoms..."></textarea><br/>
+  <button id="send">Send</button>
+
+  <script>
+    const userId = 'live_user'; // change if you want
+    const apiUrl = 'http://127.0.0.1:8000/message';
+
+    document.getElementById('send').onclick = async () => {
+      const text = document.getElementById('message').value.trim();
+      if(!text) return;
+      append('You: ' + text, 'user');
+      document.getElementById('message').value = '';
+      const body = { user_id: userId, message: text, lat: 28.6139, lon: 77.2090 };
+      try {
+        const resp = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(body)
+        });
+        const data = await resp.json();
+        append('SehatSaathi: ' + JSON.stringify(data.result, null, 2), 'bot');
+      } catch(err) {
+        append('Error: ' + err.toString(), 'bot');
+      }
+    };
+
+    function append(text, cls){
+      const d = document.createElement('pre');
+      d.textContent = text;
+      d.className = cls;
+      document.getElementById('chat').appendChild(d);
+      document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
+    }
+  </script>
+</body>
+</html>
