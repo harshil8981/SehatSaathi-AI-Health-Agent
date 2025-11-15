@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Community Clinic A",
+    "lat": 28.6139,
+    "lon": 77.209,
+    "distance_km": 1.2,
+    "phone": "+91-90000-00001"
+  },
+  {
+    "name": "Telemedicine Portal",
+    "lat": null,
+    "lon": null,
+    "distance_km": null,
+    "url": "https://telemed.example"
+  }
+]
